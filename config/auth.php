@@ -40,7 +40,18 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'artist' => [
+            'driver' => 'session',
+            'provider' => 'artists',
+        ],
+        'critical-artist' => [
+            'driver' => 'session',
+            'provider' => 'critical-artists',
+        ],
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -70,7 +81,18 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-
+        'artists' => [
+            'driver' => 'eloquent',
+            'model' => App\Artist::class,
+        ],
+        'critical-artists' => [
+            'driver' => 'eloquent',
+            'model' => App\CriticalArtist::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

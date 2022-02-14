@@ -1,5 +1,7 @@
 <?php
-
+header('Access-Control-Allow-Origin: *'); 
+header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
@@ -18,4 +20,4 @@ if ($uri !== '/' && file_exists(__DIR__.'/public'.$uri)) {
     return false;
 }
 
-require_once __DIR__.'/public/index.php';
+require_once __DIR__.'/index.php';

@@ -17,11 +17,15 @@
       0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     ),
   ),
-  'fruitcake/laravel-cors' => 
+  'laravel/socialite' => 
   array (
     'providers' => 
     array (
-      0 => 'Fruitcake\\Cors\\CorsServiceProvider',
+      0 => 'Laravel\\Socialite\\SocialiteServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Socialite' => 'Laravel\\Socialite\\Facades\\Socialite',
     ),
   ),
   'laravel/tinker' => 
@@ -29,6 +33,13 @@
     'providers' => 
     array (
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    ),
+  ),
+  'laravel/ui' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Ui\\UiServiceProvider',
     ),
   ),
   'nesbot/carbon' => 
@@ -43,6 +54,17 @@
     'providers' => 
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    ),
+  ),
+  'yajra/laravel-datatables-oracle' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'DataTables' => 'Yajra\\DataTables\\Facades\\DataTables',
     ),
   ),
 );
