@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\City;
+use App\Country;
+use App\State;
 use DataTables;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 class CityController extends Controller
 {
@@ -26,23 +29,39 @@ class CityController extends Controller
      */
     public function index()
     {
-        return view('admin.users.index');
+        return view('admin.cities.index');
     }
  
     /**
-     * Get User List From DB  For Datatables
+     * Get City List From DB  For Datatables
      *
      * @return \Illuminate\Http\Response
     */
-    public function getUsersData()
+    public function getCitiesData()
     {
-        $users = User::latest()->get();
-        
-        return Datatables::of($users)
+        //$cities = City::has('country', 'state')->latest()->get();
+
+        $cities = City::leftJoin('states', 'states.id', '=', 'cities.state_id')
+        ->leftJoin('countries', 'countries.id', '=', 'cities.country_id')
+        ->orderBy('cities.id', 'desc')
+        ->select('cities.id', 'cities.name', 'states.name as state_name', 'countries.name as country_name')->get();
+
+        return Datatables::of($cities)
                 ->addIndexColumn()
+                ->editColumn('name', function($row) {
+                    return Str::limit($row->name, 20, $end='.......');
+                })
+                ->addColumn('country_name', function($row){
+                    return Str::limit($row->country_name, 20, $end='.......');
+                  
+                })
+                ->addColumn('state_name', function($row){
+                    
+                    return Str::limit($row->state_name, 20, $end='.......');
+                })
                 ->addColumn('edit', function($row){
 
-                   $btn = '<a href="'.url('admin/edit-user/').'/'.$row->id.'" class="edit btn btn-primary btn-sm">Edit</a>';
+                   $btn = '<a href="'.url('admin/edit-city/').'/'.$row->id.'" class="edit btn btn-primary btn-sm">Edit</a>';
 
                     return $btn;
                 })
@@ -61,7 +80,8 @@ class CityController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');   
+        $countries = Country::all();
+        return view('admin.cities.create', ['countries' => $countries]);   
     }
 
     /**
@@ -74,25 +94,19 @@ class CityController extends Controller
     {
         
         $request->validate([
-            'name' => 'required|min:3|max:255',
-            'email' => 'required|email|unique:users|max:255',
-            'password' => 'required|min:3|confirmed',
-            'city' => 'required|min:3|max:255',
-            'country' => 'required|min:3|max:255',
-            'postcode' => 'required|min:5|max:7',
+
+            'name' => 'required|min:3|unique:cities|max:255',
+            'country_id' => 'required',
+            'state_id' => 'required',
         ]);
 
-        $user = User::create([
+        $city = City::create([
             'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'mobile_number' => $request->mobile_number,
-            'city' => $request->city,
-            'country' => $request->country,
-            'postcode' => $request->postcode,
+            'country_id' => $request->country_id,
+            'state_id' => $request->state_id,
         ]);
 
-        return redirect()->route('admin.users')->with('success', 'User Added Successfully!');
+        return redirect()->route('admin.cities')->with('success', 'City Added Successfully!');
     }
 
     /**
@@ -102,7 +116,7 @@ class CityController extends Controller
      */
     public function show(Request $request)
     {
-        return view('admin.users.edit');  
+        return view('admin.cities.edit');  
     }
 
     /**
@@ -112,9 +126,12 @@ class CityController extends Controller
      */
     public function edit($id)
     {
-        $user = User::where(['id'=>$id])->first();
-        
-        return view('admin.users.edit', [ 'user' => $user]);
+        $countries = Country::all();
+        $city = City::where(['id'=>$id])->first();
+
+        $states = State::where('country_id', $city->country_id)->get(['id','name']);
+
+        return view('admin.cities.edit', [ 'city' => $city, 'states' => $states, 'countries' => $countries]);
     }
 
     /**
@@ -127,30 +144,23 @@ class CityController extends Controller
     {
         
         $request->validate([
-            'name' => 'required|min:3|max:255',
-            'email' => 'required|email|max:255|unique:users,email, '. $request->id . ',id',
-            'city' => 'required|min:3|max:255',
-            'country' => 'required|min:3|max:255',
-            'postcode' => 'required|min:5|max:7',
+
+            'name' => 'required|min:3|max:255|unique:cities,name, '. $request->id . ',id',
+            'country_id' => 'required',
+            'state_id' => 'required',
         ]);
 
         $data = [
             'name' => $request->name,
-            'email' => $request->email,
-            'mobile_number' => $request->mobile_number,
-            'city' => $request->city,
-            'country' => $request->country,
-            'postcode' => $request->postcode,
+            'country_id' => $request->country_id,
+            'state_id' => $request->state_id,
         ];
 
-        if (!empty($request->password)) {
-            $data['password'] = Hash::make($request->password);
-        }
         
-        $user = User::where('id', $request->id)
+        $city = City::where('id', $request->id)
             ->update($data);
 
-        return redirect()->route('admin.users')->with('success', 'User Updated Successfully!');
+        return redirect()->route('admin.cities')->with('success', 'City Updated Successfully!');
     }
 
     /**
@@ -161,7 +171,7 @@ class CityController extends Controller
     public function destroy($id, Request $request)
     {
         
-        $user = User::where('id', $id)->firstorfail()->delete();
-        return redirect()->route('admin.users')->with('success', 'User Removed Successfully!');
+        City::where('id', $id)->firstorfail()->delete();
+        return redirect()->route('admin.cities')->with('success', 'City Removed Successfully!');
     }
 }
