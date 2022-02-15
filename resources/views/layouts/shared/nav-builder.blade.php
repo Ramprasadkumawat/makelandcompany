@@ -1,5 +1,5 @@
         <div class="c-sidebar-brand">
-            Test Series
+            MakeLandCompany
         </div>
         
         <ul class="c-sidebar-nav">
@@ -72,7 +72,7 @@
             </li>
             <li class="c-sidebar-nav-title">
                 <i class="c-sidebar-nav-icon"></i> 
-                Rythum Test
+                MakeLandCompany
             </li>
         </ul>
         <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
