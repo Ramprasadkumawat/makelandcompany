@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 use Auth;
 use App\User;
 use App\Admin;
+use App\State;
+use App\City;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -28,14 +30,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $userCount = User::count();
         $data = [
-            'userCount' => $userCount,
+            'userCount' => 1,
+            'artistCount' => 2,
+            'cArtistCount' => 3
         ];
         
         return view('admin.home', ['data' => $data]);
     }
-
+ 
     /**
      * Show the User Profile.
      *
@@ -93,8 +96,8 @@ class HomeController extends Controller
         $request_data = $request->All();
         $request->validate([
             'current-password' => 'required',
-            'password' => 'required|same:password',
-            'password_confirmation' => 'required|same:password'
+            'password' => 'required|same:password|min:6|max:20',
+            'password_confirmation' => 'required|same:password|min:6|max:20'
         ]);
 
         $current_password = Auth::user()->password;
@@ -110,5 +113,28 @@ class HomeController extends Controller
         } else {           
             return redirect()->route('admin.change-password')->with('error', 'Please enter correct current password!');
         }
+    }
+
+
+    /**
+    * List of States
+    *
+    * @return Json Response
+    */
+    public function fetchStates(Request $request)
+    {
+        $data['states'] = State::where("country_id",$request->countryId)->get(["name", "id"]);
+        return response()->json($data);
+    }
+
+    /**
+    * List of Cities
+    *
+    * @return Json Response
+    */
+    public function fetchCities(Request $request)
+    {
+        $data['cities'] = City::where("state_id",$request->stateId)->get(["name", "id"]);
+        return response()->json($data);
     }   
 }

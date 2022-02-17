@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', 'User\HomeController@index');
+//Route::get('/', 'User\HomeController@index');
 
+Route::get('/', 'Admin\HomeController@index');
 Route::get('/admin', 'Admin\HomeController@index')->name('admin');
 
 
@@ -55,15 +56,11 @@ Route::prefix('admin')->group(function() {
     Route::get('/edit-user/{id?}', 'Admin\UserController@edit')->name('admin.edit-user');
     Route::post('/update-user', 'Admin\UserController@update')->name('admin.update-user');
 
+    /*Fetch States And Cities Json*/
+    Route::get('/fetch-states/', 'Admin\HomeController@fetchStates')->name('admin.fetch-states');
 
-    /*Admin Genres Route*/
-    Route::get('/genres', 'Admin\GenreController@index')->name('admin.genres');
-    Route::get('/get-genres', 'Admin\GenreController@getGenresData')->name('admin.get_genres');
-    Route::get('/delete-genre/{id}', 'Admin\GenreController@destroy')->name('admin.delete_genre');
-    Route::get('/create-genre', 'Admin\GenreController@create')->name('admin.create-genre');
-    Route::post('/store-genre', 'Admin\GenreController@store')->name('admin.store-genre');
-    Route::get('/edit-genre/{id?}', 'Admin\GenreController@edit')->name('admin.edit-genre');
-    Route::post('/update-genre', 'Admin\GenreController@update')->name('admin.update-genre');
+    Route::get('/fetch-cities/', 'Admin\HomeController@fetchCities')->name('admin.fetch-cities');
+
 
     /*Admin Country Route*/
     Route::get('/countries', 'Admin\CountryController@index')->name('admin.countries');
@@ -82,6 +79,15 @@ Route::prefix('admin')->group(function() {
     Route::post('/store-state', 'Admin\StateController@store')->name('admin.store-state');
     Route::get('/edit-state/{id?}', 'Admin\StateController@edit')->name('admin.edit-state');
     Route::post('/update-state', 'Admin\StateController@update')->name('admin.update-state');
+
+    /*Admin City Route*/
+    Route::get('/cities', 'Admin\CityController@index')->name('admin.cities');
+    Route::get('/get-cities', 'Admin\CityController@getCitiesData')->name('admin.get_cities');
+    Route::get('/delete-city/{id}', 'Admin\CityController@destroy')->name('admin.delete_city');
+    Route::get('/create-city', 'Admin\CityController@create')->name('admin.create-city');
+    Route::post('/store-city', 'Admin\CityController@store')->name('admin.store-city');
+    Route::get('/edit-city/{id?}', 'Admin\CityController@edit')->name('admin.edit-city');
+    Route::post('/update-city', 'Admin\CityController@update')->name('admin.update-city');
 
     /*Admin Suggestion Route*/
     Route::get('/suggestions', 'Admin\SuggestionController@index')->name('admin.suggestions');
@@ -114,12 +120,3 @@ Route::prefix('admin')->group(function() {
 Route::get('/drop-zone', 'DropzoneFileUploadController@index')->name('drop-zone');
 Route::post('store-image-drop', 'DropzoneFileUploadController@uploadImages');
 Route::post('delete-image-drop', 'DropzoneFileUploadController@deleteImage');
-
-/*//Social Login Using Google Routes
-Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
-Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
-
-//Social Login Using Facebook Routes
-Route::get('auth/facebook', 'Auth\FacebookController@redirectToFacebook');
-Route::get('auth/facebook/callback', 'Auth\FacebookController@handleFacebookCallback');
-*/

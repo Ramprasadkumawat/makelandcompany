@@ -43,13 +43,7 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->mapApiRoutes();
-
         $this->mapWebRoutes();
-
-        $this->mapArtistRoutes();
-        $this->mapUserRoutes();
-        $this->mapCriticalArtistRoutes();
-        
     }
 
     /**
@@ -81,47 +75,4 @@ class RouteServiceProvider extends ServiceProvider
              ->group(base_path('routes/api.php'));
     }
 
-   
-    /**
-     * Define the "api" routes for the application.
-     *
-     * These routes are typically stateless.
-     *
-     * @return void
-     */
-    protected function mapArtistRoutes()
-    {
-        Route::prefix('artist')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/artist.php'));
-    }
-
-
-    /**
-     * Define the "api" routes for the application.
-     *
-     * These routes are typically stateless.
-     *
-     * @return void
-     */
-    protected function mapUserRoutes()
-    {
-        Route::prefix('user')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/user.php'));
-    }
-
-    /**
-     * Define the "api" routes for the application.
-     *
-     * These routes are typically stateless.
-     *
-     * @return void
-     */
-    protected function mapCriticalArtistRoutes()
-    {
-        Route::prefix('critical-artist')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/critical-artist.php'));
-    }
 }
