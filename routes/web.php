@@ -27,6 +27,26 @@ Route::prefix('admin')->group(function() {
     Route::post('/register', 'Auth\RegisterController@createAdmin');
 
     /*Admin Users Route*/
+    
+    // village routing
+    Route::get('/villages', 'Admin\VillageController@index')->name('admin.villages');
+    Route::get('/get-villages', 'Admin\VillageController@getVillagesData')->name('admin.get_villages');
+    Route::get('/create-village', 'Admin\VillageController@create')->name('admin.create-village');
+    Route::post('/store-village', 'Admin\VillageController@store')->name('admin.store-village');
+    Route::get('/edit-village/{id?}', 'Admin\VillageController@edit')->name('admin.edit-village');
+    Route::post('/update-village', 'Admin\VillageController@update')->name('admin.update-village');
+    Route::get('/delete-village/{id}', 'Admin\VillageController@destroy')->name('admin.delete_village');
+    
+    // Cold-store routing
+    Route::get('/cold-store', 'Admin\ColdStoreController@index')->name('admin.cold-store');
+    Route::get('/get-villages', 'Admin\ColdStoreController@getVillagesData')->name('admin.get_villages');
+    Route::get('/create-cold-store', 'Admin\ColdStoreController@create')->name('admin.create-cold-store');
+    Route::post('/store-cold-store', 'Admin\ColdStoreController@store')->name('admin.store-cold-store');
+    Route::get('/edit-village/{id?}', 'Admin\ColdStoreController@edit')->name('admin.edit-village');
+    Route::post('/update-village', 'Admin\ColdStoreController@update')->name('admin.update-village');
+    Route::get('/delete-village/{id}', 'Admin\ColdStoreController@destroy')->name('admin.delete_village');
+
+    // users routing
     Route::get('/users', 'Admin\UserController@index')->name('admin.users');
     Route::get('/get-users', 'Admin\UserController@getUsersData')->name('admin.get_users');
     Route::get('/delete-user/{id}', 'Admin\UserController@destroy')->name('admin.delete_user');
