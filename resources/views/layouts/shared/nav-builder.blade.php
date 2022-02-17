@@ -17,12 +17,6 @@
                 </a>
             </li>
             <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="{{ url('admin/genres') }}">
-                    <i class="nav-icon icon-bookmark mr-2"></i>
-                    Genres
-                </a>
-            </li>
-            <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link" href="{{ url('admin/suggestions') }}">
                     <i class="nav-icon icon-bookmark mr-2"></i>
                     Suggestions / Complain

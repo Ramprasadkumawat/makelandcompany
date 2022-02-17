@@ -142,10 +142,10 @@
             name: "required",
             city: "required",
             country: "required",
-            email: {
+            /* email: {
               required: true,
               email: true
-            },
+            }, */
             mobile_number:{
               required:true,
               minlength:9,
@@ -170,10 +170,10 @@
             'name': "Name field is required.",
             'city': "City field is required.",
             'country': "Country field is required.",
-            'email': {
+            /* 'email': {
                 required: "Email field is required.",
                 email: "Please input a valid email",
-            },
+            }, */
             'mobile_number': {
                 required: "Contact number field is required.",
                 minlength: "Please input a valid contact nubmer",
