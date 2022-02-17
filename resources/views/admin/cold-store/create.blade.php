@@ -43,7 +43,7 @@
                             <label for="weigth" class="col-md-4 col-form-label text-md-right">{{ __('Weigth') }}</label>
 
                             <div class="col-md-3">
-                                <input id="weigth" type="text" class="form-control @error('weigth') is-invalid @enderror" name="weigth" value="{{ old('weigth') }}" required autocomplete="weigth" autofocus>
+                                <input id="weigth" type="number" class="form-control @error('weigth') is-invalid @enderror" name="weigth" value="{{ old('weigth') }}" required autocomplete="weigth" autofocus>
 
                                 @error('weigth')
                                     <span class="invalid-feedback" role="alert">
@@ -53,7 +53,7 @@
                             </div>
 
                             <div class="col-md-3">
-                                <select name="cityname" class="form-control" id="cityname">
+                                <select name="type" class="form-control" id="type">
                                     <option value="">Select Type</option>
                                     
                                     <option value="quintal">Quintal</option>
@@ -102,7 +102,7 @@
                             <label for="amount" class="col-md-4 col-form-label text-md-right">{{ __('Amount') }}</label>
 
                             <div class="col-md-6">
-                                <input id="amount" type="text" class="form-control @error('amount') is-invalid @enderror" name="amount" value="{{ old('amount') }}" required autocomplete="amount" autofocus>
+                                <input id="amount" type="number" class="form-control @error('amount') is-invalid @enderror" name="amount" value="{{ old('amount') }}" required autocomplete="amount" autofocus>
 
                                 @error('amount')
                                     <span class="invalid-feedback" role="alert">

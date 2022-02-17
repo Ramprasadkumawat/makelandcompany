@@ -39,13 +39,13 @@ class ColdStoreController extends Controller
     */
     public function getVillagesData()
     {
-        $villages = Village::select('villages.*','cities.name as cityname')->leftjoin('cities', 'villages.city_id_FK', 'cities.id')->latest()->get();
-        
+        $villages = Coldstore::select('coldstores.*','cities.name as cityname','villages.name as villagename')->leftjoin('cities', 'coldstores.city_id_FK', 'cities.id')->leftjoin('villages', 'coldstores.village_id_FK', 'villages.id')->latest()->get();
+
         return Datatables::of($villages)
                 ->addIndexColumn()
                 ->addColumn('edit', function($row){
 
-                   $btn = '<a href="'.url('admin/edit-village/').'/'.base64_encode($row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
+                   $btn = '<a href="'.url('admin/edit-cold-store/').'/'.base64_encode($row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
 
                     return $btn;
                 })
@@ -76,7 +76,7 @@ class ColdStoreController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {        
         $request->validate([
             'name' => 'required|min:1|max:255',
             'stock_name' => 'required|min:1|max:255',
@@ -119,9 +119,10 @@ class ColdStoreController extends Controller
     {
         $id = base64_decode($id);
         $cities = City::where('state_id', 21)->get();
-        $village = Village::where(['id'=>$id])->first();
-        
-        return view('admin.villages.edit', [ 'village' => $village],compact('cities'));
+        $village = Village::orderBy('id', 'DESC')->get();
+        $coldstore = Coldstore::where(['id'=>$id])->first();
+
+        return view('admin.cold-store.edit', [ 'coldstore' => $coldstore],compact('cities','village'));
     }
 
     /**
@@ -135,22 +136,32 @@ class ColdStoreController extends Controller
         
         $request->validate([
             'name' => 'required|min:1|max:255',
+            'stock_name' => 'required|min:1|max:255',
+            'weigth' => 'required|min:1|max:255',
+            'type' => 'required|min:1|max:255',
             'cityname' => 'required|min:1|max:255',
+            'villagename' => 'required|min:1|max:255',
+            'amount' => 'required|min:1|max:255',
         ]);
 
         $data = [
             'name' => $request->name,
+            'stock_name' => $request->stock_name,
+            'weigth' => $request->weigth,
+            'type' => $request->type,
             'city_id_FK' => $request->cityname,
+            'village_id_FK' => $request->villagename,
+            'amount' => $request->amount,
         ];
 
         // if (!empty($request->password)) {
         //     $data['password'] = Hash::make($request->password);
         // }
         
-        $village = Village::where('id', $request->id)
+        $village = Coldstore::where('id', $request->id)
             ->update($data);
 
-        return redirect()->route('admin.villages')->with('success', 'Village Updated Successfully!');
+        return redirect()->route('admin.cold-store')->with('success', 'Cold-Store Updated Successfully!');
     }
 
     /**
@@ -161,7 +172,7 @@ class ColdStoreController extends Controller
     public function destroy($id, Request $request)
     {
         
-        $village = Village::where('id', $id)->firstorfail()->delete();
-        return redirect()->route('admin.villages')->with('success', 'Village Removed Successfully!');
+        $village = Coldstore::where('id', $id)->firstorfail()->delete();
+        return redirect()->route('admin.cold-store')->with('success', 'Cold-Store Removed Successfully!');
     }
 }
