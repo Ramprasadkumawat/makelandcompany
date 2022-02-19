@@ -26,7 +26,7 @@
                         </div>
                         
                         <div class="form-group row">
-                            <label for="city_id" class="col-md-4 col-form-label text-md-right">{{ __('Select City') }}</label>
+                            <label for="city_id" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
 
                             <div class="col-md-6">
 
@@ -40,7 +40,7 @@
                         </div>
                         
                         <div class="form-group row">
-                            <label for="village_id" class="col-md-4 col-form-label text-md-right">{{ __('Select Village') }}</label>
+                            <label for="village_id" class="col-md-4 col-form-label text-md-right">{{ __('Village') }}</label>
 
                             <div class="col-md-6">
                                 <select name="village_id" class="form-control" id="village_id">
@@ -48,6 +48,18 @@
                                     @foreach($village as $key => $value)
                                     <option value="{{$value->id}}">{{$value->name}}</option>
                                     @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('Status') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="status" class="form-control" id="status">
+                                    <option value="">Select Status </option>
+                                    <option value="1">Active</option>
+                                    <option value="2">Inactive</option>
                                 </select>
                             </div>
                         </div>

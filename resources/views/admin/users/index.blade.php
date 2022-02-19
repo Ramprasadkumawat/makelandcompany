@@ -23,8 +23,10 @@
                         <tr>
                           <th scope="col">#</th>
                           <th scope="col">Name</th>
-                          <th scope="col">Email</th>
                           <th scope="col">Mobile Number</th>
+                          <th scope="col">City</th>
+                          <th scope="col">Village</th>
+                          <th scope="col">Type</th>
                           <th scope="col">Edit</th>
                           <th scope="col">Delete</th>
                         </tr>
@@ -51,8 +53,10 @@
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'name', name: 'name'},
-                {data: 'email', name: 'email'},
                 {data: 'mobile_number', name: 'mobile_number'},
+                {data: 'cityname', name: 'cityname'},
+                {data: 'villagename', name: 'villagename'},
+                {data: 'type', name: 'type'},
                 {data: 'edit', name: 'edit', orderable: false, searchable: false},
                 {data: 'delete', name: 'delete', orderable: false, searchable: false},
             ]

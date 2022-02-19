@@ -43,6 +43,7 @@ class ColdStoreController extends Controller
 
         return Datatables::of($villages)
                 ->addIndexColumn()
+                
                 ->addColumn('edit', function($row){
 
                    $btn = '<a href="'.url('admin/edit-cold-store/').'/'.base64_encode($row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
@@ -79,14 +80,17 @@ class ColdStoreController extends Controller
     {        
         $request->validate([
             'name' => 'required|min:1|max:255',
-            'city_id' => 'required|min:1|max:255',
-            'village_id' => 'required|min:1|max:255',
+            'city_id' => 'required',
+            'village_id' => 'required',
+            'status' => 'required',
         ]);
 
         $coldstore = Coldstore::create([
             'name' => $request->name,
             'city_id_FK' => $request->city_id,
             'village_id_FK' => $request->village_id,
+            'status' => $request->status,
+            
         ]);
 
         return redirect()->route('admin.cold-store')->with('success', 'Cold-Store Added Successfully!');
@@ -127,14 +131,16 @@ class ColdStoreController extends Controller
     {
         $request->validate([
             'name' => 'required|min:1|max:255',
-            'city_id' => 'required|min:1|max:255',
-            'village_id' => 'required|min:1|max:255',
+            'city_id' => 'required',
+            'village_id' => 'required',
+            'status' => 'required',
         ]);
 
         $data = [
             'name' => $request->name,
             'city_id_FK' => $request->city_id,
             'village_id_FK' => $request->village_id,
+            'status' => $request->status,
         ];
 
         $village = Coldstore::where('id', $request->id)
