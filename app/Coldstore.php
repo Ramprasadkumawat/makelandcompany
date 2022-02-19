@@ -14,6 +14,6 @@ class Coldstore extends Model
     protected $table = "coldstores";
 
     protected $fillable = [
-        'id','name', 'stock_name','weigth', 'type','village_id_FK', 'city_id_FK','amount', 'created_at','updated_at'
+        'city_id_FK', 'village_id_FK', 'name', 'status'
     ];
 }

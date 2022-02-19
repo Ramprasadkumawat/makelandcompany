@@ -6,6 +6,7 @@ use App\User;
 use App\Admin;
 use App\State;
 use App\City;
+use App\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -136,5 +137,17 @@ class HomeController extends Controller
     {
         $data['cities'] = City::where("state_id",$request->stateId)->get(["name", "id"]);
         return response()->json($data);
-    }   
+    }
+    
+    /**
+    * List of Cities
+    *
+    * @return Json Response
+    */
+    public function fetchVillages(Request $request)
+    {
+        $data['villages'] = Village::where("city_id_FK",$request->cityId)->get(["name", "id"]);
+        return response()->json($data);
+    }
+    
 }

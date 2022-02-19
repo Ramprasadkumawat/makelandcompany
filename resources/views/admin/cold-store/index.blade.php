@@ -23,13 +23,8 @@
                         <tr>
                           <th scope="col">#</th>
                           <th scope="col">Name</th>
-                          <th scope="col">Stock Name</th>
-                          <th scope="col">Weigth</th>
-                          <th scope="col">Type</th>
                           <th scope="col">City</th>
                           <th scope="col">Village</th>
-                          <th scope="col">Amount</th>
-                          <th scope="col">Date & Time</th>
                           <th scope="col">Edit</th>
                           <th scope="col">Delete</th>
                         </tr>
@@ -52,17 +47,12 @@
         $('#artists-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ url('admin/get-villages') }}",
+            ajax: "{{ url('admin/get-coldstores') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'name', name: 'name'},
-                {data: 'stock_name', name: 'stock_name'},
-                {data: 'weigth', name: 'weigth'},
-                {data: 'type', name: 'type'},
                 {data: 'cityname', name: 'cityname'},
                 {data: 'villagename', name: 'villagename'},
-                {data: 'amount', name: 'amount'},
-                {data: 'created_at', name: 'created_at'},
                 {data: 'edit', name: 'edit', orderable: false, searchable: false},
                 {data: 'delete', name: 'delete', orderable: false, searchable: false},
             ]
