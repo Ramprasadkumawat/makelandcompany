@@ -56,6 +56,24 @@ Route::prefix('admin')->group(function() {
     Route::get('/edit-user/{id?}', 'Admin\UserController@edit')->name('admin.edit-user');
     Route::post('/update-user', 'Admin\UserController@update')->name('admin.update-user');
 
+    // Payment Type routing
+    Route::get('/payment-type', 'Admin\PaymentTypeController@index')->name('admin.payment-type');
+    Route::get('/get-payment-type', 'Admin\PaymentTypeController@getPaymentTypesData')->name('admin.get_payment-type');
+    Route::get('/delete-payment-type/{id}', 'Admin\PaymentTypeController@destroy')->name('admin.delete_payment-type');
+    Route::get('/create-payment-type', 'Admin\PaymentTypeController@create')->name('admin.create-payment-type');
+    Route::post('/store-payment-type', 'Admin\PaymentTypeController@store')->name('admin.store-payment-type');
+    Route::get('/edit-payment-type/{id?}', 'Admin\PaymentTypeController@edit')->name('admin.edit-payment-type');
+    Route::post('/update-payment-type', 'Admin\PaymentTypeController@update')->name('admin.update-payment-type');
+
+    // Banks  routing
+    Route::get('/banks', 'Admin\BankController@index')->name('admin.banks');
+    Route::get('/get-banks', 'Admin\BankController@getBanksData')->name('admin.get_bank');
+    Route::get('/delete-bank/{id}', 'Admin\BankController@destroy')->name('admin.delete_bank');
+    Route::get('/create-bank', 'Admin\BankController@create')->name('admin.create-bank');
+    Route::post('/store-bank', 'Admin\BankController@store')->name('admin.store-bank');
+    Route::get('/edit-bank/{id?}', 'Admin\BankController@edit')->name('admin.edit-bank');
+    Route::post('/update-bank', 'Admin\BankController@update')->name('admin.update-bank');
+
     /*Fetch States, Cities, Villages Json*/
     Route::get('/fetch-states/', 'Admin\HomeController@fetchStates')->name('admin.fetch-states');
 

@@ -29,6 +29,18 @@
                 </a>
             </li>
             <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" href="{{ url('admin/payment-type') }}">
+                    <i class="nav-icon icon-bookmark mr-2"></i>
+                    Payment Type
+                </a>
+            </li>
+            <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" href="{{ url('admin/banks') }}">
+                    <i class="nav-icon icon-bookmark mr-2"></i>
+                    Banks
+                </a>
+            </li>
+            <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link" href="{{ url('admin/suggestions') }}">
                     <i class="nav-icon icon-bookmark mr-2"></i>
                     Suggestions / Complain
