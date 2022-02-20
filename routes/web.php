@@ -40,12 +40,21 @@ Route::prefix('admin')->group(function() {
     
     // Cold-store routing
     Route::get('/cold-store', 'Admin\ColdStoreController@index')->name('admin.cold-store');
-    Route::get('/get-villages', 'Admin\ColdStoreController@getVillagesData')->name('admin.get_villages');
+    Route::get('/get-cold-stores', 'Admin\ColdStoreController@getColdStoragesData')->name('admin.get_cold-stores');
     Route::get('/create-cold-store', 'Admin\ColdStoreController@create')->name('admin.create-cold-store');
     Route::post('/store-cold-store', 'Admin\ColdStoreController@store')->name('admin.store-cold-store');
     Route::get('/edit-cold-store/{id?}', 'Admin\ColdStoreController@edit')->name('admin.edit-cold-store');
     Route::post('/update-cold-store', 'Admin\ColdStoreController@update')->name('admin.update-cold-store');
     Route::get('/delete-cold-store/{id}', 'Admin\ColdStoreController@destroy')->name('admin.delete_cold-store');
+    
+    // Sell routing
+    Route::get('/sell', 'Admin\SellController@index')->name('admin.sell');
+    Route::get('/get-sells', 'Admin\SellController@getSells')->name('admin.get_sell');
+    Route::get('/create-sell', 'Admin\SellController@create')->name('admin.create-sell');
+    Route::post('/store-sell', 'Admin\SellController@store')->name('admin.store-sell');
+    Route::get('/edit-sell/{id?}', 'Admin\SellController@edit')->name('admin.edit-sell');
+    Route::post('/update-sell', 'Admin\SellController@update')->name('admin.update-sell');
+    Route::get('/delete-sell/{id}', 'Admin\SellController@destroy')->name('admin.delete_sell');
 
     // users routing
     Route::get('/users', 'Admin\UserController@index')->name('admin.users');

@@ -52,7 +52,7 @@
         $('#artists-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ url('admin/get-villages') }}",
+            ajax: "{{ url('admin/get-cold-stores') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'name', name: 'name'},

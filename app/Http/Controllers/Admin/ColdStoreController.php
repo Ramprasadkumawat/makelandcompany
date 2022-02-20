@@ -37,7 +37,7 @@ class ColdStoreController extends Controller
      *
      * @return \Illuminate\Http\Response
     */
-    public function getVillagesData()
+    public function getColdStoragesData()
     {
         $villages = Coldstore::select('coldstores.*','cities.name as cityname','villages.name as villagename')->leftjoin('cities', 'coldstores.city_id_FK', 'cities.id')->leftjoin('villages', 'coldstores.village_id_FK', 'villages.id')->latest()->get();
 

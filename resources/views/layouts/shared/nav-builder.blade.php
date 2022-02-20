@@ -29,6 +29,12 @@
                 </a>
             </li>
             <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" href="{{ url('admin/sell') }}">
+                    <i class="nav-icon icon-user mr-2"></i>
+                    Sell
+                </a>
+            </li>
+            <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link" href="{{ url('admin/genres') }}">
                     <i class="nav-icon icon-bookmark mr-2"></i>
                     Genres
