@@ -25,23 +25,13 @@
             <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link" href="{{ url('admin/cold-store') }}">
                     <i class="nav-icon icon-user mr-2"></i>
-<<<<<<< HEAD
-                    Cold-Store
-                </a>
-            </li>
-            <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="{{ url('admin/sell') }}">
-                    <i class="nav-icon icon-user mr-2"></i>
-                    Sell
-                </a>
-            </li>
-            <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="{{ url('admin/genres') }}">
-                    <i class="nav-icon icon-bookmark mr-2"></i>
-                    Genres
-=======
                     Cold Store
->>>>>>> 430f8b2bda691954799f2e9d726a2ea18419f8e9
+                </a>
+            </li>
+            <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" href="{{ url('admin/transport-vehicle') }}">
+                    <i class="nav-icon icon-user mr-2"></i>
+                    Transport Vehicle(Gaadi)
                 </a>
             </li>
             <li class="c-sidebar-nav-item">

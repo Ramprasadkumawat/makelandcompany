@@ -6,8 +6,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="pull-left"> Cold-Store List</div> 
-                    <div class="pull-right"> <a href="{{url('/admin/create-cold-store')}}" class="btn btn-md btn-primary"> + Add Cold-Store</a> </div> 
+                    <div class="pull-left"> Transport-Vehicle List</div> 
+                    <div class="pull-right"> <a href="{{url('/admin/create-transport-vehicle')}}" class="btn btn-md btn-primary"> + Add Transport-Vehicle</a> </div> 
                 </div>
 
                 <div class="card-body">
@@ -23,8 +23,9 @@
                         <tr>
                           <th scope="col">#</th>
                           <th scope="col">Name</th>
-                          <th scope="col">City</th>
-                          <th scope="col">Village</th>
+                          <th scope="col">Capacity(Bore Count)</th>
+                          <th scope="col">Capacity Weight</th>
+                          <th scope="col">Status</th>
                           <th scope="col">Edit</th>
                           <th scope="col">Delete</th>
                         </tr>
@@ -47,12 +48,13 @@
         $('#artists-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ url('admin/get-coldstores') }}",
+            ajax: "{{ url('admin/get-transportvehicles') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'name', name: 'name'},
-                {data: 'cityname', name: 'cityname'},
-                {data: 'villagename', name: 'villagename'},
+                {data: 'capacity', name: 'capacity'},
+                {data: 'capacity_weight', name: 'capacity_weight'},
+                {data: 'status', name: 'status'},
                 {data: 'edit', name: 'edit', orderable: false, searchable: false},
                 {data: 'delete', name: 'delete', orderable: false, searchable: false},
             ]
@@ -74,7 +76,7 @@
                }
             });*/
 
-            window.location.href = "{{url('admin/delete-cold-store').'/'}}"+id;
+            window.location.href = "{{url('admin/delete-transport-vehicle').'/'}}"+id;
         } else { 
             // stop the ajax call
             return false;

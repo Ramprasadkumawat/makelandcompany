@@ -6,8 +6,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="pull-left"> Cold-Store List</div> 
-                    <div class="pull-right"> <a href="{{url('/admin/create-cold-store')}}" class="btn btn-md btn-primary"> + Add Cold-Store</a> </div> 
+                    <div class="pull-left"> Sell List</div> 
+                    <div class="pull-right"> <a href="{{url('/admin/create-sell-and-store')}}" class="btn btn-md btn-primary"> + Add Sell</a> </div> 
                 </div>
 
                 <div class="card-body">
@@ -22,9 +22,15 @@
                       <thead>
                         <tr>
                           <th scope="col">#</th>
-                          <th scope="col">Name</th>
+                          <th scope="col">Customer Name</th>
+                          <th scope="col">Cold-Store Name</th>
+                          <th scope="col">Stock Name</th>
+                          <th scope="col">Product Name</th>
+                          <!-- <th scope="col">Type</th>
                           <th scope="col">City</th>
                           <th scope="col">Village</th>
+                          <th scope="col">Amount</th> -->
+                          <th scope="col">Date & Time</th>
                           <th scope="col">Edit</th>
                           <th scope="col">Delete</th>
                         </tr>
@@ -47,12 +53,18 @@
         $('#artists-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ url('admin/get-coldstores') }}",
+            ajax: "{{ url('admin/get-sells') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'name', name: 'name'},
-                {data: 'cityname', name: 'cityname'},
-                {data: 'villagename', name: 'villagename'},
+                {data: 'customername', name: 'customername'},
+                {data: 'storename', name: 'storename'},
+                {data: 'stockname', name: 'stockname'},
+                {data: 'productname', name: 'productname'},
+                // {data: 'type', name: 'type'},
+                // {data: 'cityname', name: 'cityname'},
+                // {data: 'villagename', name: 'villagename'},
+                // {data: 'amount', name: 'amount'},
+                {data: 'created_at', name: 'created_at'},
                 {data: 'edit', name: 'edit', orderable: false, searchable: false},
                 {data: 'delete', name: 'delete', orderable: false, searchable: false},
             ]
@@ -74,7 +86,7 @@
                }
             });*/
 
-            window.location.href = "{{url('admin/delete-cold-store').'/'}}"+id;
+            window.location.href = "{{url('admin/delete-sell-and-store').'/'}}"+id;
         } else { 
             // stop the ajax call
             return false;

@@ -48,6 +48,16 @@ Route::prefix('admin')->group(function() {
     Route::post('/update-cold-store', 'Admin\ColdStoreController@update')->name('admin.update-cold-store');
     Route::get('/delete-cold-store/{id}', 'Admin\ColdStoreController@destroy')->name('admin.delete_cold-store');
     
+    // Transport-vehicles(Gaadi) routing
+    Route::get('/transport-vehicle', 'Admin\TransportVehicleController@index')->name('admin.transport-vehicle');
+    Route::get('/get-cold-stores', 'Admin\ColdStoreController@getColdStoragesData')->name('admin.get_cold-stores');
+    Route::get('/get-transportvehicles', 'Admin\TransportVehicleController@getTransportVehiclesData')->name('admin.get_transportvehicles');
+    Route::get('/create-transport-vehicle', 'Admin\TransportVehicleController@create')->name('admin.create-transport-vehicle');
+    Route::post('/store-transport-vehicle', 'Admin\TransportVehicleController@store')->name('admin.store-transport-vehicle');
+    Route::get('/edit-transport-vehicle/{id?}', 'Admin\TransportVehicleController@edit')->name('admin.edit-transport-vehicle');
+    Route::post('/update-transport-vehicle', 'Admin\TransportVehicleController@update')->name('admin.update-transport-vehicle');
+    Route::get('/delete-transport-vehicle/{id}', 'Admin\TransportVehicleController@destroy')->name('admin.delete_transport-vehicle');
+    
     // Sell routing
     Route::get('/sell', 'Admin\SellController@index')->name('admin.sell');
     Route::get('/get-sells', 'Admin\SellController@getSells')->name('admin.get_sell');
