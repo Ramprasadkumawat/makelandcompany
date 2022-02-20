@@ -12488,6 +12488,10 @@ html:not([dir="rtl"])
   background: #3c4b64;
 }
 
+.makel-logo{
+  padding: 13px;
+}
+
 *[dir="rtl"] .c-sidebar.c-sidebar-right {
   border: 0;
 }

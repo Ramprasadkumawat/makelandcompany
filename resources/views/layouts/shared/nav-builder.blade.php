@@ -1,5 +1,6 @@
-        <div class="c-sidebar-brand">
-            MakeLandCompany
+        <div class="c-sidebar-brand makel-logo">
+            <!-- MakeLandCompany -->
+            <img alt="Image placeholder" src="http://localhost/makelandcompany/public/assets/brand/makel_logo.png" class="avatar">
         </div>
         
         <ul class="c-sidebar-nav">
