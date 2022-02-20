@@ -29,7 +29,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -38,7 +38,6 @@
                                 @enderror
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Contact Number') }}</label>
 
@@ -54,66 +53,54 @@
                         </div>
                         
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="city_id" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}" required >
-
-                                @error('city')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="country" type="text" class="form-control @error('country') is-invalid @enderror" name="country" value="{{ old('country') }}" required >
-
-                                @error('country')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="postcode" class="col-md-4 col-form-label text-md-right">{{ __('Postcode') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="postcode" type="text" class="form-control @error('postcode') is-invalid @enderror" name="postcode" value="{{ old('postcode') }}" required >
-
-                                @error('postcode')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <select name="city_id" class="form-control" id="city_id">
+                                    <option value="">Select City</option>
+                                    @foreach($data as $key => $value)
+                                    <option value="{{$value->id}}">{{$value->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         
+                        <div class="form-group row">
+                            <label for="village_id" class="col-md-4 col-form-label text-md-right">{{ __('Village') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="village_id" class="form-control" id="village_id">
+                                    <option value="">Select Village --Optional</option>
+                                    @foreach($village as $key => $value)
+                                    <option value="{{$value->id}}">{{$value->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('Type') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="type" class="form-control" id="type">
+                                    <option value="">Select Type</option>
+                                    <option value="1">Kisan</option>
+                                    <option value="2">Merchant</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('Status') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="status" class="form-control" id="status">
+                                    <option value="">Select Status </option>
+                                    <option value="1">Active</option>
+                                    <option value="2">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -137,59 +124,59 @@
     $("#createForm").validate({
         rules: {
             name: "required",
-            city: "required",
-            country: "required",
-            email: {
-              required: true,
-              email: true
-            },
+            city_id: "required",
+            village_id: "required",
             mobile_number:{
               required:true,
               minlength:9,
               maxlength:12,
               number: true
-            },
-            postcode:{
-              required:true,
-              minlength:5,
-              maxlength:7,
-              number: true
-            },
-            password : {
-                minlength : 5
-            },
-            password_confirmation : {
-                minlength : 5,
-                equalTo : "#password"
             }
         },
         messages: {
             'name': "Name field is required.",
-            'city': "City field is required.",
-            'country': "Country field is required.",
-            'password': "Password field is required.",
-            'email': {
-                required: "Email field is required.",
-                email: "Please input a valid email",
-            },
+            'city_id': "City field is required.",
+            'village_id': "Village field is required.",
+            /* 'password': "Password field is required.", */
             'mobile_number': {
                 required: "Contact number field is required.",
                 minlength: "Please input a valid contact nubmer",
                 maxlength: "Please input a valid contact nubmer",
                 number: "Please input a valid contact nubmer",
-            },
-            'postcode': {
-                required: "Postcode field is required.",
-                minlength: "Please input a valid postcode",
-                maxlength: "Please input a valid postcode",
-                number: "Please input a valid postcode",
-            },
+            }
         },
       submitHandler: function(form) {
         form.submit();
       }
      });
 
+/*Onchange Ajax call Village*/
+
+$(document).ready(function () {
+        $('#city_id').on('change', function () {
+
+        var cityId = this.value;
+
+        $("#village_id").html('');
+
+        $.ajax({
+            url: "{{url('admin/fetch-villages')}}",
+            type: "GET",
+            data: {
+                cityId: cityId
+            },
+            dataType: 'json',
+            success: function (result) {
+                $('#village_id').html('<option value="">Select Village --Optional</option>');
+                $.each(result.villages, function (key, value) {
+                    $("#village_id").append('<option value="' + value
+                        .id + '">' + value.name + '</option>');
+                });
+            }
+        });
+    });    
+});
+/*Onchange Ajax call Village*/
 </script>
 
 @endsection

@@ -25,6 +25,7 @@
             <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link" href="{{ url('admin/cold-store') }}">
                     <i class="nav-icon icon-user mr-2"></i>
+<<<<<<< HEAD
                     Cold-Store
                 </a>
             </li>
@@ -38,6 +39,9 @@
                 <a class="c-sidebar-nav-link" href="{{ url('admin/genres') }}">
                     <i class="nav-icon icon-bookmark mr-2"></i>
                     Genres
+=======
+                    Cold Store
+>>>>>>> 430f8b2bda691954799f2e9d726a2ea18419f8e9
                 </a>
             </li>
             <li class="c-sidebar-nav-item">
@@ -61,10 +65,6 @@
                     <li class="c-sidebar-nav-item">
                         <a class="c-sidebar-nav-link" href="{{ url('/admin/change-password') }}">
                         <i class="nav-icon icon-key mr-2"></i> Change Password </a>
-                    </li>
-                    <li class="c-sidebar-nav-item">
-                        <a class="c-sidebar-nav-link" href="{{ url('/admin/configuration') }}">
-                        <i class="nav-icon icon-bookmark mr-2"></i> Configuration</a>
                     </li>
                 </ul>
             </li>

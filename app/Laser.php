@@ -4,16 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Coldstore extends Model
+class Laser extends Model
 {
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $table = "coldstores";
-
     protected $fillable = [
-        'city_id_FK', 'village_id_FK', 'name', 'status'
+        'user_id_FK', 'gadi_id_FK', 'maal', 'maal_weight', 'mazdur_ids', 'amount', 'payment_type_id_FK', 'datetime',
     ];
 }

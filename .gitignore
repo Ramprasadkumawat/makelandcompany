@@ -7,3 +7,5 @@ npm-debug.log/vendor/
 node_modules/
 
 npm-debug.log
+
+.env

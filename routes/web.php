@@ -41,6 +41,7 @@ Route::prefix('admin')->group(function() {
     // Cold-store routing
     Route::get('/cold-store', 'Admin\ColdStoreController@index')->name('admin.cold-store');
     Route::get('/get-cold-stores', 'Admin\ColdStoreController@getColdStoragesData')->name('admin.get_cold-stores');
+    Route::get('/get-coldstores', 'Admin\ColdStoreController@getColdStoreData')->name('admin.get_coldstore');
     Route::get('/create-cold-store', 'Admin\ColdStoreController@create')->name('admin.create-cold-store');
     Route::post('/store-cold-store', 'Admin\ColdStoreController@store')->name('admin.store-cold-store');
     Route::get('/edit-cold-store/{id?}', 'Admin\ColdStoreController@edit')->name('admin.edit-cold-store');
@@ -65,11 +66,12 @@ Route::prefix('admin')->group(function() {
     Route::get('/edit-user/{id?}', 'Admin\UserController@edit')->name('admin.edit-user');
     Route::post('/update-user', 'Admin\UserController@update')->name('admin.update-user');
 
-    /*Fetch States And Cities Json*/
+    /*Fetch States, Cities, Villages Json*/
     Route::get('/fetch-states/', 'Admin\HomeController@fetchStates')->name('admin.fetch-states');
 
     Route::get('/fetch-cities/', 'Admin\HomeController@fetchCities')->name('admin.fetch-cities');
-
+    Route::get('/fetch-villages/', 'Admin\HomeController@fetchVillages')->name('admin.fetch-villages');
+    
 
     /*Admin Country Route*/
     Route::get('/countries', 'Admin\CountryController@index')->name('admin.countries');

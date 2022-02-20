@@ -4,16 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Coldstore extends Model
+class MazdurTransaction extends Model
 {
+    protected $table = 'mazdur_transactions';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $table = "coldstores";
-
     protected $fillable = [
-        'city_id_FK', 'village_id_FK', 'name', 'status'
+        'mazdur_id_FK', 'amount', 'type', 'datetime', 
     ];
 }
