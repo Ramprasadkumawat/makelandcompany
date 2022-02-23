@@ -46,7 +46,7 @@ class EmployeeController extends Controller
                 
                 ->addColumn('edit', function($row){
 
-                   $btn = '<a href="'.url('admin/edit-transport-vehicle/').'/'.base64_encode($row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
+                   $btn = '<a href="'.url('admin/edit-employees/').'/'.base64_encode($row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
 
                     return $btn;
                 })
@@ -110,9 +110,9 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $id = base64_decode($id);
-        $transportvehicle = Mazdur::where(['id'=>$id])->first();
+        $employees = Mazdur::where(['id'=>$id])->first();
 
-        return view('admin.transport-vehicle.edit', [ 'transportvehicle' => $transportvehicle]);
+        return view('admin.employees.edit', [ 'employees' => $employees]);
     }
 
     /**
@@ -125,22 +125,20 @@ class EmployeeController extends Controller
     {
         $request->validate([
             'name' => 'required|min:1|max:255',
-            'capacity' => 'required',
-            'capacity_weight' => 'required',
+            'per_round_payment' => 'required',
             'status' => 'required',
         ]);
 
         $data = [
             'name' => $request->name,
-            'capacity' => $request->capacity,
-            'capacity_weight' => $request->capacity_weight,
+            'per_round_payment' => $request->per_round_payment,
             'status' => $request->status,
         ];
 
-        $village = Gadi::where('id', $request->id)
+        $village = Mazdur::where('id', $request->id)
             ->update($data);
 
-        return redirect()->route('admin.transport-vehicle')->with('success', 'Transport vehicle Updated Successfully!');
+        return redirect()->route('admin.employees')->with('success', 'Employee Updated Successfully!');
     }
 
     /**
@@ -152,6 +150,6 @@ class EmployeeController extends Controller
     {
         
         $village = Mazdur::where('id', $id)->firstorfail()->delete();
-        return redirect()->route('admin.transport-vehicle')->with('success', 'Transport Vehicle Removed Successfully!');
+        return redirect()->route('admin.employees')->with('success', 'Employee Removed Successfully!');
     }
 }

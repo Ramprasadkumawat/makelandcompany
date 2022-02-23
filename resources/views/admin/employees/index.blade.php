@@ -74,7 +74,7 @@
                }
             });*/
 
-            window.location.href = "{{url('admin/delete-employee').'/'}}"+id;
+            window.location.href = "{{url('admin/delete-employees').'/'}}"+id;
         } else { 
             // stop the ajax call
             return false;
