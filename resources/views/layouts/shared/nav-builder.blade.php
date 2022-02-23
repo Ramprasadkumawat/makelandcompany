@@ -32,7 +32,16 @@
             <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link" href="{{ url('admin/transport-vehicle') }}">
                     <i class="nav-icon icon-user mr-2"></i>
-                    Transport Vehicle(Gaadi)
+                    Transport Vehicle (Gaadi)
+                </a>
+            </li>
+            <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" href="{{ url('admin/employees') }}">
+                    <i class="nav-icon icon-user mr-2"></i>
+                    Employees (Mazdur)
+                </a>
+            </li>
+            <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link" href="{{ url('admin/payment-type') }}">
                     <i class="nav-icon icon-bookmark mr-2"></i>
                     Payment Type

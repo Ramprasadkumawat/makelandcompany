@@ -50,13 +50,21 @@ Route::prefix('admin')->group(function() {
     
     // Transport-vehicles(Gaadi) routing
     Route::get('/transport-vehicle', 'Admin\TransportVehicleController@index')->name('admin.transport-vehicle');
-    Route::get('/get-cold-stores', 'Admin\ColdStoreController@getColdStoragesData')->name('admin.get_cold-stores');
     Route::get('/get-transportvehicles', 'Admin\TransportVehicleController@getTransportVehiclesData')->name('admin.get_transportvehicles');
     Route::get('/create-transport-vehicle', 'Admin\TransportVehicleController@create')->name('admin.create-transport-vehicle');
     Route::post('/store-transport-vehicle', 'Admin\TransportVehicleController@store')->name('admin.store-transport-vehicle');
     Route::get('/edit-transport-vehicle/{id?}', 'Admin\TransportVehicleController@edit')->name('admin.edit-transport-vehicle');
     Route::post('/update-transport-vehicle', 'Admin\TransportVehicleController@update')->name('admin.update-transport-vehicle');
     Route::get('/delete-transport-vehicle/{id}', 'Admin\TransportVehicleController@destroy')->name('admin.delete_transport-vehicle');
+    
+    // Employee(Mazdur) routing
+    Route::get('/employees', 'Admin\EmployeeController@index')->name('admin.employees');
+    Route::get('/get-employees', 'Admin\EmployeeController@getEmployeesData')->name('admin.get_employees');
+    Route::get('/create-employees', 'Admin\EmployeeController@create')->name('admin.create-employees');
+    Route::post('/store-employees', 'Admin\EmployeeController@store')->name('admin.store-employees');
+    Route::get('/edit-employees/{id?}', 'Admin\EmployeeController@edit')->name('admin.edit-employees');
+    Route::post('/update-employees', 'Admin\EmployeeController@update')->name('admin.update-employees');
+    Route::get('/delete-employees/{id}', 'Admin\EmployeeController@destroy')->name('admin.delete_employees');
     
     // Sell routing
     Route::get('/sell', 'Admin\SellController@index')->name('admin.sell');
