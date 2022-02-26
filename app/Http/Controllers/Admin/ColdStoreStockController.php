@@ -41,7 +41,12 @@ class ColdStoreStockController extends Controller
         $csStocks = ColdStoreStocks::latest()->get();
         return Datatables::of($csStocks)
                 ->addIndexColumn()
-                
+                ->editColumn('status', function($row) {
+                    return ($row->status == 1) ? 'Active' : 'Inactive';
+                })
+                ->addColumn('coldStoreName', function($row) {
+                    return Coldstore::where('id', $row->coldstore_id_FK)->first()->name;
+                })
                 ->addColumn('edit', function($row){
 
                    $btn = '<a href="'.url('admin/edit-cold-store-stock/').'/'.base64_encode($row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
@@ -87,7 +92,7 @@ class ColdStoreStockController extends Controller
             'coldstore_id_FK' => $request->coldstore_id,
             'name' => $request->name,
             'capacity' => $request->capacity,
-            'weight' => $request->capacity_weight,
+            'weight' => $request->weight,
             'status' => $request->status,
         ]);
 
@@ -138,7 +143,7 @@ class ColdStoreStockController extends Controller
             'coldstore_id_FK' => $request->coldstore_id,
             'name' => $request->name,
             'capacity' => $request->capacity,
-            'capacity_weight' => $request->capacity_weight,
+            'weight' => $request->weight,
             'status' => $request->status,
         ];
 

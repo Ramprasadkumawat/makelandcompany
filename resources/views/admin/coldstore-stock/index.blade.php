@@ -6,8 +6,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="pull-left"> Transport-Vehicle List</div> 
-                    <div class="pull-right"> <a href="{{url('/admin/create-transport-vehicle')}}" class="btn btn-md btn-primary"> + Add Transport-Vehicle</a> </div> 
+                    <div class="pull-left"> Cold Store Stock List</div> 
+                    <div class="pull-right"> <a href="{{url('/admin/create-cold-store-stock')}}" class="btn btn-md btn-primary"> + Add Cold Store Stock</a> </div> 
                 </div>
 
                 <div class="card-body">
@@ -49,7 +49,7 @@
         $('#artists-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ url('admin/get-transportvehicles') }}",
+            ajax: "{{ url('admin/get-coldstoreStocks') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'name', name: 'name'},

@@ -12,17 +12,17 @@
                         @csrf
                         
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Cold Store') }}</label>
 
                             <div class="col-md-6">
                                 
-                                <select name="" id="">
+                                <select name="coldstore_id" class="form-control" id="">
                                     @foreach ($coldStore as $item)
                                         <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach
                                 </select>
 
-                                @error('name')
+                                @error('coldstore_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
