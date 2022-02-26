@@ -56,7 +56,7 @@
                         </a>
                     </li>
                     <li class="c-sidebar-nav-item">
-                        <a class="c-sidebar-nav-link" href="{{ url('admin/add-stock-transaction') }}">
+                        <a class="c-sidebar-nav-link" href="{{ url('admin/get-stock-transaction-information') }}">
                             <i class="nav-icon icon-user mr-2"></i>
                            Stocks Information
                         </a>

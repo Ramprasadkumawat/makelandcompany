@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ "Create Cold Store Stock Transasction" }}</div>
+                <div class="card-header">{{ "Cold Store Stock Transasction Information" }}</div>
 
                 <div class="card-body">
                     @if (session('success'))
@@ -18,8 +18,7 @@
                             {{ session('error') }}
                         </div>
                     @endif
-                    <form method="POST" id="createForm" action="{{ route('admin.store-cold-store-stock-transaction') }}">
-                        @csrf
+                    <form >
                         
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Cold Store') }}</label>
@@ -45,62 +44,13 @@
                                 <select name="coldstore_stock_id" class="form-control" id="coldstore_stock_id">
                                     
                                 </select>
-
-                                @error('coldstore_stock_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Dhakad Roadlines" autofocus required>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Maal (Bore count)') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="maal" type="number" class="form-control @error('maal') is-invalid @enderror" name="maal" value="{{ old('maal') }}" required autocomplete="capacity" placeholder="300" autofocus required>
-                                
-                                @error('maal')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Maal Weight In Quaintal') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="maal_weight" type="number" class="form-control @error('maal_weight') is-invalid @enderror" name="maal_weight" value="{{ old('maal_weight') }}" required autocomplete="maal_weight" placeholder="3000" autofocus required>
-
-                                @error('maal_weight')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        
                         <div class="form-group row">
                             <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('Transaction Type') }}</label>
-
                             <div class="col-md-6">
-                                <select name="type" class="form-control" id="status" required>
+                                <select name="type" class="form-control" id="type" required>
                                     <option value="">Select Transaction </option>
                                     <option value="1">IN</option>
                                     <option value="2">OUT</option>
@@ -110,13 +60,30 @@
                         
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ 'Submit' }}
-                                </button>
-                                <a href="{{url('/admin/')}}" class="btn btn-danger"> {{ 'Cancel' }}</a>
+                                <a id="check" href="#" class="btn btn-info"> {{ 'Check' }}</a>
+                                <a href="{{url('/admin/')}}" class="btn btn-danger"> {{ 'Back' }}</a>
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">{{ "Last 10 Transactions" }}</div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Item name</th>
+                                <th scope="col">Maal(50KG Bore Count) </th>
+                                <th scope="col">Weight</th>
+                                <th scope="col">Transaction Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -128,26 +95,11 @@
 
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <script type="text/javascript">
-    $("#createForm").validate({
-        rules: {
-            name: "required",
-            capacity: "required",
-            weight: "required",
-        },
-        messages: {
-            'name': "Name field is required.",
-            'capacity': "Capacity field is required.",
-            'weight': "Weight field is required.",
-        },
-      submitHandler: function(form) {
-        form.submit();
-      }
-    });
 
 /*Onchange Ajax call Cold Store*/
 
 $(document).ready(function () {
-        $('#coldstore_id').on('change', function () {
+    $('#coldstore_id').on('change', function () {
 
         var coldStoreId = this.value;
 
@@ -168,7 +120,40 @@ $(document).ready(function () {
                 });
             }
         });
-    });    
+    });
+    
+    $("#check").on('click', function () {
+        
+        let coldStorageStockId = $("#coldstore_stock_id").val();
+        let type = $("#type").val();
+
+        $.ajax({
+            url: "{{url('admin/get-stock-transactions-list')}}",
+            type: "GET",
+            data: {
+                coldStorageStockId : coldStorageStockId,
+                type:type
+            },
+            dataType: 'json',
+            success: function (result) {
+                
+                let i=1;
+                $.each(result.stockTransaction, function (key, value) {
+                    let row ='';
+                    row +='<tr>';
+                    row += '<th scope="row">'+i+'</th>';
+                    row += '<td>'+value.item_name+'</td>';
+                    row += '<td>'+value.maal+'</td>';
+                    row += '<td>'+value.maal_weight+'</td>';
+                    row += '<td>'+value.type+'</td>';
+                    row +='</tr>';
+
+                    $("table tbody").append(row);
+                    i++;
+                });
+            }
+        });
+    });
 });
 /*Onchange Ajax call Cold Store*/
 </script>

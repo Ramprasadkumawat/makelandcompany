@@ -70,7 +70,7 @@ class StockTransanctionController extends Controller
         ];
 
         StockTransaction::create($arr);
-        
+
         if ($req->type == 1) {
             $coldStoreStocks->available_capacity = $coldStoreStocks->available_capacity - $req->maal;
             $coldStoreStocks->available_weight = $coldStoreStocks->available_weight - $req->maal_weight;
@@ -82,4 +82,38 @@ class StockTransanctionController extends Controller
 
         return redirect()->route('add.stockTransaction')->with('success', 'Transaction added sccessFully!');        
     }
+
+    /**
+     * get Stock Trannsactions.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getStockTransaction()
+    {
+        $coldStore = Coldstore::where(['status' => 1])->get();
+        return view('admin.stock-transaction.info', ['coldStore'=>$coldStore]);
+    }
+
+    /**
+     * get Stock Trannsactions List.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getStockTransactionList(Request $req)
+    {
+        $stockTransaction = StockTransaction::where("stock_id_FK", $req->coldStorageStockId);
+        
+        if($req->type != '') {
+            $stockTransaction = $stockTransaction->where('type', $req->type);
+        }
+
+        $stockTransaction = $stockTransaction->orderBy('id', 'desc')->take(10)->get();
+        foreach ($stockTransaction as $key => $transaction) {
+            $transaction->type = ($transaction->type == 1) ? 'In' : 'Out' ;
+        }
+        $data['stockTransaction'] = $stockTransaction;
+        return response()->json($data);
+    }
+
+    
 }
