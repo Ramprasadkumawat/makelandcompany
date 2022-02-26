@@ -13,6 +13,10 @@
 
 //Route::get('/', 'User\HomeController@index');
 
+
+
+
+
 Route::get('/', 'Admin\HomeController@index');
 Route::get('/admin', 'Admin\HomeController@index')->name('admin');
 

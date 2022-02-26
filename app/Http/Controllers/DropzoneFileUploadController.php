@@ -7,6 +7,10 @@ use App\ImageUpload;
 
 class DropzoneFileUploadController extends Controller
 {
+
+    public function test(){
+        echo "test";
+    }
     public function index() {
         return view('image-upload');
     }
