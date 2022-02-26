@@ -43,7 +43,8 @@ Route::prefix('admin')->group(function() {
     
     Route::get('/add-stock-transaction', 'Admin\StockTransanctionController@add')->name('add.stockTransaction');
     Route::get('/fetch-coldstore-stocks/', 'Admin\HomeController@fetchColdStoreStock')->name('admin.fetch-coldstores');
-
+    Route::post('/store-coldstore-stock-transaction', 'Admin\StockTransanctionController@storeColdStoreStockTransaction')->name('admin.store-cold-store-stock-transaction');
+    
     // village routing
     Route::get('/villages', 'Admin\VillageController@index')->name('admin.villages');
     Route::get('/get-villages', 'Admin\VillageController@getVillagesData')->name('admin.get_villages');

@@ -14,6 +14,6 @@ class ColdStoreStocks extends Model
      * @var array
      */
     protected $fillable = [
-        'coldstore_id_FK', 'name', 'capacity', 'weight', 'status'
+        'coldstore_id_FK', 'name', 'capacity', 'weight', 'status', 'available_capacity', 'available_weight'
     ];
 }

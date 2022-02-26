@@ -43,7 +43,26 @@
                     </li>
                 </ul>
             </li>
-            
+            <li class="c-sidebar-nav-dropdown">
+                <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-cogs mr-2"></i>
+                    Stock Management
+                </a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    <li class="c-sidebar-nav-item">
+                        <a class="c-sidebar-nav-link" href="{{ url('admin/add-stock-transaction') }}">
+                            <i class="nav-icon icon-user mr-2"></i>
+                           Add Stock Transaction
+                        </a>
+                    </li>
+                    <li class="c-sidebar-nav-item">
+                        <a class="c-sidebar-nav-link" href="{{ url('admin/add-stock-transaction') }}">
+                            <i class="nav-icon icon-user mr-2"></i>
+                           Stocks Information
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link" href="{{ url('admin/transport-vehicle') }}">
                     <i class="nav-icon icon-user mr-2"></i>

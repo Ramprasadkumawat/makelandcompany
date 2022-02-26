@@ -94,6 +94,8 @@ class ColdStoreStockController extends Controller
             'capacity' => $request->capacity,
             'weight' => $request->weight,
             'status' => $request->status,
+            'available_capacity' => $request->capacity,
+            'available_weight' => $request->weight,
         ]);
 
         return redirect()->route('admin.cold-store-storage')->with('success', 'Cold Store Stocks Added Successfully!');
@@ -145,6 +147,8 @@ class ColdStoreStockController extends Controller
             'capacity' => $request->capacity,
             'weight' => $request->weight,
             'status' => $request->status,
+            'available_capacity' => $request->capacity,
+            'available_weight' => $request->weight,
         ];
 
         $village = ColdStoreStocks::where('id', $request->id)

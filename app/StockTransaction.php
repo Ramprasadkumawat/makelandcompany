@@ -14,6 +14,6 @@ class StockTransaction extends Model
      * @var array
      */
     protected $fillable = [
-        'stock_id_FK', 'Item_name', 'maal', 'maal_weight', 'type'
+        'stock_id_FK', 'item_name', 'maal', 'maal_weight', 'type'
     ];
 }
