@@ -117,7 +117,7 @@ class ColdStoreController extends Controller
         $cities = City::where('state_id', 1)->get();
         $coldstore = Coldstore::where(['id'=>$id])->first();
         $village = Village::where(['city_id_FK'=>$coldstore->city_id_FK])->orderBy('id', 'DESC')->get();
-
+        
         return view('admin.cold-store.edit', [ 'coldstore' => $coldstore],compact('cities','village'));
     }
 

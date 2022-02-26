@@ -11,6 +11,14 @@
 |
 */
 
+
+Route::get('/main', function () {
+    return 'Hello World';
+});
+
+Route::get('/main', 'MainController@test');
+
+
 //Route::get('/', 'User\HomeController@index');
 
 Route::get('/', 'Admin\HomeController@index');

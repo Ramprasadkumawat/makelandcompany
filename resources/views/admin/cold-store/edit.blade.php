@@ -75,10 +75,10 @@
                             <div class="col-md-6">
                                 <select name="status" class="form-control" id="status">
                                     <option value="">Select Status </option>
-                                    <option value="1" @if ($user->status == 1)
+                                    <option value="1" @if ($coldstore->status == 1)
                                         selected
                                     @endif>Active</option>
-                                    <option value="2" @if ($user->status == 2)
+                                    <option value="2" @if ($coldstore->status == 2)
                                         selected
                                     @endif>Inactive</option>
                                 </select>
