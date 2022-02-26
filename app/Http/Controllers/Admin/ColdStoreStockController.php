@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Village;
-use App\City;
 use App\Coldstore;
+use App\ColdStoreStocks;
 use DataTables;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class ColdStoreController extends Controller
+class ColdStoreStockController extends Controller
 {
     /**
      * Create a User controller instance.
@@ -29,7 +28,7 @@ class ColdStoreController extends Controller
      */
     public function index()
     {
-        return view('admin.cold-store.index');
+        return view('admin.coldstore-stock.index');
     }
  
     /**
@@ -37,16 +36,15 @@ class ColdStoreController extends Controller
      *
      * @return \Illuminate\Http\Response
     */
-    public function getColdStoreData()
+    public function getColdStoreStocksData()
     {
-        $villages = Coldstore::select('coldstores.*','cities.name as cityname','villages.name as villagename')->leftjoin('cities', 'coldstores.city_id_FK', 'cities.id')->leftjoin('villages', 'coldstores.village_id_FK', 'villages.id')->latest()->get();
-
-        return Datatables::of($villages)
+        $csStocks = ColdStoreStocks::latest()->get();
+        return Datatables::of($csStocks)
                 ->addIndexColumn()
                 
                 ->addColumn('edit', function($row){
 
-                   $btn = '<a href="'.url('admin/edit-cold-store/').'/'.base64_encode($row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
+                   $btn = '<a href="'.url('admin/edit-cold-store-stock/').'/'.base64_encode($row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
 
                     return $btn;
                 })
@@ -65,9 +63,8 @@ class ColdStoreController extends Controller
      */
     public function create()
     {
-        $data = City::where('state_id', 1)->get();
-        $village = Village::orderBy('id', 'DESC')->get();
-        return view('admin.cold-store.create',compact('data','village'));   
+        $coldStore = Coldstore::where(['status' => 1])->get();
+        return view('admin.coldstore-stock.create', ['coldStore'=>$coldStore]);   
     }
 
     /**
@@ -79,21 +76,22 @@ class ColdStoreController extends Controller
     public function store(Request $request)
     {        
         $request->validate([
+            'coldstore_id' => 'required',
             'name' => 'required|min:1|max:255',
-            'city_id' => 'required',
-            'village_id' => 'required',
+            'capacity' => 'required',
+            'weight' => 'required',
             'status' => 'required',
         ]);
 
-        $coldstore = Coldstore::create([
+        ColdStoreStocks::create([
+            'coldstore_id_FK' => $request->coldstore_id,
             'name' => $request->name,
-            'city_id_FK' => $request->city_id,
-            'village_id_FK' => $request->village_id,
+            'capacity' => $request->capacity,
+            'weight' => $request->capacity_weight,
             'status' => $request->status,
-            
         ]);
 
-        return redirect()->route('admin.cold-store')->with('success', 'Cold-Store Added Successfully!');
+        return redirect()->route('admin.cold-store-storage')->with('success', 'Cold Store Stocks Added Successfully!');
     }
 
     /**
@@ -114,11 +112,10 @@ class ColdStoreController extends Controller
     public function edit($id)
     {
         $id = base64_decode($id);
-        $cities = City::where('state_id', 1)->get();
-        $coldstore = Coldstore::where(['id'=>$id])->first();
-        $village = Village::where(['city_id_FK'=>$coldstore->city_id_FK])->orderBy('id', 'DESC')->get();
-        
-        return view('admin.cold-store.edit', [ 'coldstore' => $coldstore],compact('cities','village'));
+        $coldStore = Coldstore::where(['status' => 1])->get();
+        $csStock = ColdStoreStocks::where(['id'=>$id])->first();
+
+        return view('admin.coldstore-stock.edit', [ 'csStock' => $csStock, 'coldStore' => $coldStore]);
     }
 
     /**
@@ -130,23 +127,25 @@ class ColdStoreController extends Controller
     public function update(Request $request)
     {
         $request->validate([
+            'coldstore_id' => 'required',
             'name' => 'required|min:1|max:255',
-            'city_id' => 'required',
-            'village_id' => 'required',
+            'capacity' => 'required',
+            'weight' => 'required',
             'status' => 'required',
         ]);
 
         $data = [
+            'coldstore_id_FK' => $request->coldstore_id,
             'name' => $request->name,
-            'city_id_FK' => $request->city_id,
-            'village_id_FK' => $request->village_id,
+            'capacity' => $request->capacity,
+            'capacity_weight' => $request->capacity_weight,
             'status' => $request->status,
         ];
 
-        $village = Coldstore::where('id', $request->id)
+        $village = ColdStoreStocks::where('id', $request->id)
             ->update($data);
 
-        return redirect()->route('admin.cold-store')->with('success', 'Cold tore Updated Successfully!');
+        return redirect()->route('admin.cold-store-storage')->with('success', 'Cold Store Stocks Updated Successfully!');
     }
 
     /**
@@ -157,7 +156,7 @@ class ColdStoreController extends Controller
     public function destroy($id, Request $request)
     {
         
-        $village = Coldstore::where('id', $id)->firstorfail()->delete();
-        return redirect()->route('admin.cold-store')->with('success', 'Cold Store Removed Successfully!');
+        $village = ColdStoreStocks::where('id', $id)->firstorfail()->delete();
+        return redirect()->route('admin.cold-store-storage')->with('success', 'Cold Store Stocks Removed Successfully!');
     }
 }

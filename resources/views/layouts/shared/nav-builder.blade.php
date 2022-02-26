@@ -18,39 +18,63 @@
                 </a>
             </li>
             <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="{{ url('admin/villages') }}">
+                <a class="c-sidebar-nav-link" href="{{ url('admin/employees') }}">
                     <i class="nav-icon icon-user mr-2"></i>
-                    Villages
+                    Employees (Mazdur)
                 </a>
             </li>
-            <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="{{ url('admin/cold-store') }}">
-                    <i class="nav-icon icon-user mr-2"></i>
+            <li class="c-sidebar-nav-dropdown">
+                <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-cogs mr-2"></i>
                     Cold Store
                 </a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    <li class="c-sidebar-nav-item">
+                        <a class="c-sidebar-nav-link" href="{{ url('admin/cold-store') }}">
+                            <i class="nav-icon icon-user mr-2"></i>
+                            Cold Store
+                        </a>
+                    </li>
+                    <li class="c-sidebar-nav-item">
+                        <a class="c-sidebar-nav-link" href="{{ url('admin/cold-store-stock') }}">
+                            <i class="nav-icon icon-user mr-2"></i>
+                            Cold Store Stock
+                        </a>
+                    </li>
+                </ul>
             </li>
+            
             <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link" href="{{ url('admin/transport-vehicle') }}">
                     <i class="nav-icon icon-user mr-2"></i>
                     Transport Vehicle (Gaadi)
                 </a>
             </li>
-            <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="{{ url('admin/employees') }}">
-                    <i class="nav-icon icon-user mr-2"></i>
-                    Employees (Mazdur)
-                </a>
-            </li>
-            <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="{{ url('admin/payment-type') }}">
-                    <i class="nav-icon icon-bookmark mr-2"></i>
-                    Payment Type
-                </a>
-            </li>
-            <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="{{ url('admin/banks') }}">
-                    <i class="nav-icon icon-bookmark mr-2"></i>
+            <li class="c-sidebar-nav-dropdown">
+                <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-cogs mr-2"></i>
                     Banks
+                </a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    <li class="c-sidebar-nav-item">
+                        <a class="c-sidebar-nav-link" href="{{ url('admin/banks') }}">
+                            <i class="nav-icon icon-bookmark mr-2"></i>
+                            Banks
+                        </a>
+                    </li>
+                    <li class="c-sidebar-nav-item">
+                        <a class="c-sidebar-nav-link" href="{{ url('admin/payment-type') }}">
+                            <i class="nav-icon icon-bookmark mr-2"></i>
+                            Payment Type
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" href="{{ url('admin/villages') }}">
+                    <i class="nav-icon icon-user mr-2"></i>
+                    Villages
                 </a>
             </li>
             <li class="c-sidebar-nav-item">
