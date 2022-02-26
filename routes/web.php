@@ -40,13 +40,21 @@ Route::prefix('admin')->group(function() {
     
     // Cold-store routing
     Route::get('/cold-store', 'Admin\ColdStoreController@index')->name('admin.cold-store');
-    Route::get('/get-cold-stores', 'Admin\ColdStoreController@getColdStoragesData')->name('admin.get_cold-stores');
     Route::get('/get-coldstores', 'Admin\ColdStoreController@getColdStoreData')->name('admin.get_coldstore');
     Route::get('/create-cold-store', 'Admin\ColdStoreController@create')->name('admin.create-cold-store');
     Route::post('/store-cold-store', 'Admin\ColdStoreController@store')->name('admin.store-cold-store');
     Route::get('/edit-cold-store/{id?}', 'Admin\ColdStoreController@edit')->name('admin.edit-cold-store');
     Route::post('/update-cold-store', 'Admin\ColdStoreController@update')->name('admin.update-cold-store');
     Route::get('/delete-cold-store/{id}', 'Admin\ColdStoreController@destroy')->name('admin.delete_cold-store');
+    
+    // Cold Store Stock routing
+    Route::get('/cold-store-stock', 'Admin\ColdStoreStockController@index')->name('admin.cold-store-storage');
+    Route::get('/get-coldstoreStocks', 'Admin\ColdStoreStockController@getColdStoreStocksData')->name('admin.get_coldStoreStock');
+    Route::get('/create-cold-store-stock', 'Admin\ColdStoreStockController@create')->name('admin.create-cold-store-stock');
+    Route::post('/store-cold-store-stock', 'Admin\ColdStoreStockController@store')->name('admin.store-cold-store-stock');
+    Route::get('/edit-cold-store-stock/{id?}', 'Admin\ColdStoreStockController@edit')->name('admin.edit-cold-store-stock');
+    Route::post('/update-cold-store-stock', 'Admin\ColdStoreStockController@update')->name('admin.update-cold-store-stock');
+    Route::get('/delete-cold-store-stock/{id}', 'Admin\ColdStoreStockController@destroy')->name('admin.delete_cold-store-stock');
     
     // Transport-vehicles(Gaadi) routing
     Route::get('/transport-vehicle', 'Admin\TransportVehicleController@index')->name('admin.transport-vehicle');
