@@ -18,12 +18,7 @@ Route::get('/main', function () {
 
 Route::get('/main', 'MainController@test');
 
-
 //Route::get('/', 'User\HomeController@index');
-
-
-
-
 
 Route::get('/', 'Admin\HomeController@index');
 Route::get('/admin', 'Admin\HomeController@index')->name('admin');
@@ -40,11 +35,13 @@ Route::prefix('admin')->group(function() {
     Route::post('/register', 'Auth\RegisterController@createAdmin');
 
     /*Admin Stocks  Transaction Route*/
-
-    Route::get('/get-stock-transactions-list', 'Admin\StockTransanctionController@getStockTransactionList')->name('getStocksTransactionsList');
     
     Route::get('/get-stock-transaction-information', 'Admin\StockTransanctionController@getStockTransaction')->name('get.stockTransaction');
     Route::get('/add-stock-transaction', 'Admin\StockTransanctionController@add')->name('add.stockTransaction');
+
+    Route::get('/get-laser-transaction-information', 'Admin\LaserTransanctionController@info')->name('get.laser.info');
+    Route::get('/add-laser-transaction', 'Admin\LaserTransanctionController@add')->name('add.laser');
+
     Route::get('/fetch-coldstore-stocks/', 'Admin\HomeController@fetchColdStoreStock')->name('admin.fetch-coldstores');
     Route::post('/store-coldstore-stock-transaction', 'Admin\StockTransanctionController@storeColdStoreStockTransaction')->name('admin.store-cold-store-stock-transaction');
     
