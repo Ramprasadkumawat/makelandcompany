@@ -63,6 +63,26 @@
                     </li>
                 </ul>
             </li>
+            <li class="c-sidebar-nav-dropdown">
+                <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-cogs mr-2"></i>
+                    Laser Transactions
+                </a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    <li class="c-sidebar-nav-item">
+                        <a class="c-sidebar-nav-link" href="{{ url('admin/add-laser-transaction') }}">
+                            <i class="nav-icon icon-user mr-2"></i>
+                           Add Laser Transaction
+                        </a>
+                    </li>
+                    <li class="c-sidebar-nav-item">
+                        <a class="c-sidebar-nav-link" href="{{ url('admin/get-laser-transaction-information') }}">
+                            <i class="nav-icon icon-user mr-2"></i>
+                           Laser Information
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link" href="{{ url('admin/transport-vehicle') }}">
                     <i class="nav-icon icon-user mr-2"></i>
