@@ -114,6 +114,4 @@ class StockTransanctionController extends Controller
         $data['stockTransaction'] = $stockTransaction;
         return response()->json($data);
     }
-
-    
 }
