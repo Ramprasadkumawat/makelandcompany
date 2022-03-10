@@ -57,6 +57,15 @@ Route::prefix('admin')->group(function() {
     Route::post('/update-village', 'Admin\VillageController@update')->name('admin.update-village');
     Route::get('/delete-village/{id}', 'Admin\VillageController@destroy')->name('admin.delete_village');
     
+    // Dashboard General Report routing
+    Route::get('/transaction', 'Admin\BankingTransanctionController@index')->name('admin.banktransactions');
+    Route::get('/get-bank-transactions', 'Admin\BankingTransanctionController@getBankTransactionsData')->name('admin.get_bank_transactions');
+    // Route::get('/create-village', 'Admin\VillageController@create')->name('admin.create-village');
+    // Route::post('/store-village', 'Admin\VillageController@store')->name('admin.store-village');
+    // Route::get('/edit-village/{id?}', 'Admin\VillageController@edit')->name('admin.edit-village');
+    // Route::post('/update-village', 'Admin\VillageController@update')->name('admin.update-village');
+    // Route::get('/delete-village/{id}', 'Admin\VillageController@destroy')->name('admin.delete_village');
+    
     // Cold-store routing
     Route::get('/cold-store', 'Admin\ColdStoreController@index')->name('admin.cold-store');
     Route::get('/get-coldstores', 'Admin\ColdStoreController@getColdStoreData')->name('admin.get_coldstore');

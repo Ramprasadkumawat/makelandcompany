@@ -129,12 +129,14 @@
                 </div>
               </div>
               <!-- /.card-->
-              <div class="row">
-                <div class="col-sm-6 col-lg-4">
+              <div class="row">  
+              <div class="col-sm-6 col-lg-4">
                   <div class="card">
                     <div class="card-body row text-center">
                       <div class="col">
-                        <div class="text-value-xl">Total Artist</div>
+                        <a href="transaction">
+                          <div class="text-value-xl">General Report</div>
+                        </a>
                         <div class="font-weight-bold"></div>
                       </div>
                     </div>
@@ -145,7 +147,9 @@
                   <div class="card">
                     <div class="card-body row text-center">
                       <div class="col">
-                        <div class="text-value-xl">Total Critical Artist</div>
+                        <a href="#">
+                          <div class="text-value-xl">Total Profit & Loss</div>
+                        </a>
                         <div class="font-weight-bold"></div>
                       </div>
                     </div>
@@ -156,7 +160,9 @@
                   <div class="card">
                     <div class="card-body row text-center">
                       <div class="col">
-                        <div class="text-value-xl">Total Users</div>
+                        <a href="#">
+                          <div class="text-value-xl">Total Users</div>
+                        </a>
                         <div class="font-weight-bold"></div>
                       </div>
                     </div>
