@@ -16,7 +16,7 @@ use DataTables;
 
 class StockTransanctionController extends Controller
 {
-     /**
+    /**
      * Create a Transaction instance.
      *
      * @return void
@@ -24,16 +24,6 @@ class StockTransanctionController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
-    }
-
-    /**
-     * Stock Trannsactions.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('admin.stock-transaction.index');
     }
     
     /**
@@ -114,6 +104,4 @@ class StockTransanctionController extends Controller
         $data['stockTransaction'] = $stockTransaction;
         return response()->json($data);
     }
-
-    
 }

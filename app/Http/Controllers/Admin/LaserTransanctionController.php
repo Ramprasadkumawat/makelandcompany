@@ -16,7 +16,7 @@ use DataTables;
 
 class LaserTransanctionController extends Controller
 {
-     /**
+    /**
      * Create a Transaction instance.
      *
      * @return void
@@ -25,6 +25,25 @@ class LaserTransanctionController extends Controller
     {
         $this->middleware('auth:admin');
     }
-
     
+    /**
+     * Stock Trannsactions.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function info()
+    {
+        return view('admin.laser-transaction.info');
+    }
+    
+    /**
+     * add Stock Trannsactions.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function add()
+    {
+        $coldStore = Coldstore::where(['status' => 1])->get();
+        return view('admin.laser-transaction.create', ['coldStore'=>$coldStore]);
+    }
 }
