@@ -55,7 +55,7 @@ Route::prefix('admin')->group(function() {
     Route::get('/delete-village/{id}', 'Admin\VillageController@destroy')->name('admin.delete_village');
     
     // Dashboard General Report routing
-    Route::get('/transaction', 'Admin\BankingTransanctionController@index')->name('admin.banktransactions');
+    Route::get('/transactions', 'Admin\BankingTransanctionController@index')->name('admin.banktransactions');
     Route::get('/get-bank-transactions', 'Admin\BankingTransanctionController@getBankTransactionsData')->name('admin.get_bank_transactions');
     // Route::get('/create-village', 'Admin\VillageController@create')->name('admin.create-village');
     // Route::post('/store-village', 'Admin\VillageController@store')->name('admin.store-village');

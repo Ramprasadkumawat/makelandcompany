@@ -134,8 +134,8 @@
                   <div class="card">
                     <div class="card-body row text-center">
                       <div class="col">
-                        <a href="transaction">
-                          <div class="text-value-xl">General Report</div>
+                        <a href="transactions">
+                          <div class="text-value-xl">Transactions</div>
                         </a>
                         <div class="font-weight-bold"></div>
                       </div>
